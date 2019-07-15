@@ -25,3 +25,5 @@ set updatetime=500
 set balloondelay=250
 
 syntax on
+
+set noerrorbells visualbell t_vb=
