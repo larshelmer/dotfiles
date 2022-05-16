@@ -1,0 +1,7 @@
+[user]
+	email = lars.helmer@qlik.com
+	name = Lars Helmer
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[core]
+	excludesfiles = /Users/lhr/.gitignore_global
