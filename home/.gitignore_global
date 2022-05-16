@@ -1,0 +1,8 @@
+# Visual Studio Code files
+.vscode/
+
+# GoLand files
+.idea/
+
+# MacOS
+.DS_Store
