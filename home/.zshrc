@@ -1,6 +1,9 @@
 export GOPATH=$HOME/golang
 export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin:$HOME/.local/bin"
+export FPATH="$FPATH:$HOME/src/github.com/qlik-trial/bakelit/completions"
+
+export GOSUMDB=off
 
 # use .localrc for local machine configs.
 if [ -f "$HOME/.localrc" ]; then
@@ -16,6 +19,8 @@ alias lbe-ci="echo https://lef.us-west-2.lef-stage.k8s.qlikcloud.io"
 alias lbe-prod="echo https://license.qlikcloud.com"
 alias sessionstage="echo $SESSIONSTAGE"
 alias sessionprod="echo $SESSIONPROD"
+alias clsstage="echo $CLSSTAGE"
+alias clsprod="echo $CLSPROD"
 
 autoload -Uz compinit && compinit
 # Autoload zsh add-zsh-hook and vcs_info functions (-U autoload w/o substition, -z use zsh style)
@@ -36,3 +41,11 @@ zstyle ':vcs_info:*' stagedstr ' +'
 # Set the format of the Git information for vcs_info
 zstyle ':vcs_info:git:*' formats       '(%b%u%c) '
 zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c) '
+
+export SDE_NAME=lhr
+
+sdepush() {
+  local image_name=$1
+  docker tag docker.io/qlik/${image_name}:latest registry.$SDE_NAME.pte.qlikdev.com/${image_name}:latest
+  docker push registry.$SDE_NAME.pte.qlikdev.com/${image_name}:latest
+}
